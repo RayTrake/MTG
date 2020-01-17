@@ -38,14 +38,14 @@ public class BaseBoard
         targetsOffset = squaredSize * 2;
     }
 
-    public bool Move(GameBoard.EMoveType moveType, bool moveVisual = false)
+    public bool Move(EMoveType moveType, bool moveVisual = false)
     {
         bool result = false;
         solveCount = 0;
 
         switch (moveType)
         {
-            case GameBoard.EMoveType.Left:
+            case EMoveType.Left:
                 {
                     for (int h = 0; h < size; h++)
                     {
@@ -68,7 +68,7 @@ public class BaseBoard
                 }
                 break;
 
-            case GameBoard.EMoveType.Right:
+            case EMoveType.Right:
                 {
                     for (int h = 0; h < size; h++)
                     {
@@ -91,7 +91,7 @@ public class BaseBoard
                 }
                 break;
 
-            case GameBoard.EMoveType.Down:
+            case EMoveType.Down:
                 {
                     for (int h = size - 1; h >= 0; h--)
                     {
@@ -114,7 +114,7 @@ public class BaseBoard
                 }
                 break;
 
-            case GameBoard.EMoveType.Up:
+            case EMoveType.Up:
                 {
                     for (int h = 0; h < size; h++)
                     {
