@@ -17,8 +17,8 @@ public class SpritesManager : MonoBehaviour
         Instance = null;
     }
 
-    public GameObject Pawn;
+    public GameObject Item;
     public GameObject Block;
     public GameObject Empty;
-    public GameObject Goal;
+    public GameObject Target;
 }

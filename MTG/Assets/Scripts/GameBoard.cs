@@ -50,7 +50,7 @@ public class GameBoard : BaseBoard
 
                 if (data[targetsOffset + index] > 0)
                 {
-                    var goal = GameObject.Instantiate(SpritesManager.Instance.Goal, board.transform);
+                    var goal = GameObject.Instantiate(SpritesManager.Instance.Target, board.transform);
                     goal.transform.position = currentPosition;
                     goal.transform.localScale = Vector3.one * scale;
                 }
@@ -64,7 +64,7 @@ public class GameBoard : BaseBoard
 
                 if (data[itemsOffset + index] > 0)
                 {
-                    var item = GameObject.Instantiate(SpritesManager.Instance.Pawn, board.transform);
+                    var item = GameObject.Instantiate(SpritesManager.Instance.Item, board.transform);
                     item.transform.position = currentPosition;
                     item.transform.localScale = Vector3.one * scale * 0.8f;
 
@@ -136,14 +136,14 @@ public class GameBoard : BaseBoard
     }
 
     // TEMPORARY
-    public void Create(int size, int itemsCount)
+    public void InitTest()
     {
-        int sqrSize = size * size;
+        int sqrSize = 3 * 3;
 
         var d = new byte[sqrSize * 3 + 3];
-        d[0] = (byte)size;
-        d[1] = (byte)itemsCount;
-        d[2] = (byte)itemsCount;
+        d[0] = (byte)3;
+        d[1] = (byte)3;
+        d[2] = (byte)3;
 
         d[sqrSize + 3 + 0] = 1;
         d[sqrSize + 3 + 1] = 1;
