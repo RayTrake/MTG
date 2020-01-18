@@ -5,6 +5,29 @@ using UnityEngine;
 
 public class BoardSolver
 {
+    public List<BaseBoard.EMoveType> GetMoves(BaseBoard board)
+    {
+        List<BaseBoard.EMoveType> result = new List<BaseBoard.EMoveType>();
+
+        if (board.IsSolved())
+        {
+            return result;
+        }
+
+        SolverNode solvedNode = Find(board);
+        if (solvedNode != null)
+        {
+            result.Add(solvedNode.LastMove);
+            while (solvedNode != null && solvedNode.Prev != null)
+            {
+                result.Add(solvedNode.MoveType);
+                solvedNode = solvedNode.Prev;
+            }
+        }
+
+        return result;
+    }
+
     public BaseBoard.EMoveType FindNextMove(BaseBoard board)
     {
         if (board.IsSolved())
@@ -23,19 +46,23 @@ public class BoardSolver
 
     private BaseBoard.EMoveType GetNextMove(SolverNode node)
     {
+        BaseBoard.EMoveType result = BaseBoard.EMoveType.Count;
+
         if (node.Prev == null)
         {
-            return node.LastMove;
+            result = node.LastMove;
         }
         else
         {
-            while (node.Prev != null)
+            result = node.MoveType;
+            while (node != null && node.Prev != null)
             {
+                result = node.MoveType;
                 node = node.Prev;
             }
-
-            return node.MoveType;
         }
+
+        return result;
     }
 
     private SolverNode Find(BaseBoard board)
@@ -49,7 +76,7 @@ public class BoardSolver
         while (container.MoveNext())
         {
             SolverNode node = container.Current();
-            if (node.Moves > 20)
+            if (node.Moves > 30)
             {
                 return null;
             }

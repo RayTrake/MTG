@@ -7,13 +7,22 @@ public class GameBoard : BaseBoard
 {
     public class MoveTask
     {
-        public Transform Item;
+        public ItemVisual Item;
         public Vector2 To;
+        public bool ReachTarget;
+    }
+
+    public class ItemVisual
+    {
+        public Transform TransformObject;
+        public GlowController GlowControllerInstance;
     }
 
     List<MoveTask> moveTasks;
     Vector2[] positions;
-    Transform[] itemsVisual;
+    ItemVisual[] itemsVisual;
+
+    public GameObject board;
 
     public void DrawBoard()
     {
@@ -28,11 +37,11 @@ public class GameBoard : BaseBoard
 
         moveTasks = new List<MoveTask>();
 
-        GameObject board = new GameObject("board");
+        board = new GameObject("board");
         board.transform.position = Vector3.zero;
 
         positions = new Vector2[size * size];
-        itemsVisual = new Transform[size * size];
+        itemsVisual = new ItemVisual[size * size];
 
         for (int h = 0; h < size; h++)
         {
@@ -43,52 +52,66 @@ public class GameBoard : BaseBoard
                 positions[index] = currentPosition;
 
                 ///////////////////////// TEMPORARY
-                var obj = GameObject.Instantiate(SpritesManager.Instance.Empty, board.transform);
+                var obj = GameObject.Instantiate(SpritesManager.Instance.BoardTile, board.transform);
                 obj.transform.position = currentPosition;
                 obj.transform.localScale = Vector3.one * scale;
                 ///////////////////////////////////
 
                 if (data[targetsOffset + index] > 0)
                 {
-                    var goal = GameObject.Instantiate(SpritesManager.Instance.Target, board.transform);
-                    goal.transform.position = currentPosition;
-                    goal.transform.localScale = Vector3.one * scale;
+                    var target = GameObject.Instantiate(SpritesManager.Instance.GetRandomTarget(), board.transform);
+                    target.color = SpritesManager.Instance.Colors[data[targetsOffset + index] - 1];
+                    target.transform.position = currentPosition;
+                    target.transform.localScale = Vector3.one * scale * 0.95f;
                 }
 
                 if (data[blockOffset + index] > 0)
                 {
                     var block = GameObject.Instantiate(SpritesManager.Instance.Block, board.transform);
                     block.transform.position = currentPosition;
-                    block.transform.localScale = Vector3.one * scale;
+                    block.transform.localScale = Vector3.one * scale * 0.95f;
                 }
 
                 if (data[itemsOffset + index] > 0)
                 {
-                    var item = GameObject.Instantiate(SpritesManager.Instance.Item, board.transform);
+                    var item = GameObject.Instantiate(SpritesManager.Instance.GetItem(data[itemsOffset + index]), board.transform);
                     item.transform.position = currentPosition;
                     item.transform.localScale = Vector3.one * scale * 0.8f;
 
-                    itemsVisual[index] = item.transform;
+                    itemsVisual[index] = new ItemVisual();
+                    itemsVisual[index].TransformObject = item.transform;
+                    itemsVisual[index].GlowControllerInstance = item.GetComponent<GlowController>();
+
+                    if (data[targetsOffset + index] == data[itemsOffset + index])
+                    {
+                        itemsVisual[index].GlowControllerInstance.EnableGlowing();
+                    }
                 }
             }
         }
     }
 
-    public override void OnMove(int from, int to)
+    public bool MovementsComplete()
+    {
+        return moveTasks.Count == 0;
+    }
+
+    public override void OnMove(int from, int to, bool reachTarget)
     {
         var temp = itemsVisual[from];
         itemsVisual[to] = temp;
         itemsVisual[from] = null;
 
-        AddMoveTask(itemsVisual[to], positions[to]);
+        AddMoveTask(itemsVisual[to], positions[to], reachTarget);
     }
 
-    void AddMoveTask(Transform t, Vector2 to)
+    void AddMoveTask(ItemVisual t, Vector2 to, bool reachTarget)
     {
         moveTasks.Add(new MoveTask()
         {
             Item = t,
-            To = to
+            To = to,
+            ReachTarget = reachTarget
         });
     }
 
@@ -99,9 +122,18 @@ public class GameBoard : BaseBoard
         {
             for (int i = moveTasks.Count - 1; i >= 0; i--)
             {
-                moveTasks[i].Item.position = Vector2.MoveTowards(moveTasks[i].Item.position, moveTasks[i].To, 0.3f);
-                if ((Vector2)moveTasks[i].Item.position == moveTasks[i].To)
+                moveTasks[i].Item.TransformObject.position = Vector2.MoveTowards(moveTasks[i].Item.TransformObject.position, moveTasks[i].To, 0.3f);
+                if ((Vector2)moveTasks[i].Item.TransformObject.position == moveTasks[i].To)
                 {
+                    if (moveTasks[i].ReachTarget)
+                    {
+                        moveTasks[i].Item.GlowControllerInstance.EnableGlowing();
+                    }
+                    else
+                    {
+                        moveTasks[i].Item.GlowControllerInstance.DisableGlowing();
+                    }
+
                     moveTasks.RemoveAt(i);
                 }
             }
@@ -128,31 +160,5 @@ public class GameBoard : BaseBoard
             var width = edgeVector.x * 2;
             return width;
         }
-    }
-
-    public void SaveBoard()
-    {
-
-    }
-
-    // TEMPORARY
-    public void InitTest()
-    {
-        int sqrSize = 3 * 3;
-
-        var d = new byte[sqrSize * 3 + 3];
-        d[0] = (byte)3;
-        d[1] = (byte)3;
-        d[2] = (byte)3;
-
-        d[sqrSize + 3 + 0] = 1;
-        d[sqrSize + 3 + 1] = 1;
-        d[sqrSize + 3 + 2] = 1;
-
-        d[sqrSize * 2 + 3 + 6] = 1;
-        d[sqrSize * 2 + 3 + 7] = 1;
-        d[sqrSize * 2 + 3 + 8] = 1;
-
-        Init(d);
     }
 }

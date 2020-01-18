@@ -13,6 +13,7 @@ public class BaseBoard
     }
 
     public byte[] data;
+    private byte[] initialState;
 
     protected int size;
     protected int itemsCount;
@@ -23,19 +24,29 @@ public class BaseBoard
     protected int itemsOffset;
     protected int targetsOffset;
 
+    private int squaredSize;
+
     public void Init(byte[] inData)
     {
         size = inData[0];
         itemsCount = inData[1];
         colorCount = inData[2];
 
-        int squaredSize = size * size;
+        squaredSize = size * size;
         data = new byte[squaredSize * 3];
+        initialState = new byte[squaredSize * 3];
+
         Array.Copy(inData, 3, data, 0, squaredSize * 3);
+        Array.Copy(data, 0, initialState, 0, squaredSize * 3);
 
         blockOffset = 0;
         itemsOffset = squaredSize;
         targetsOffset = squaredSize * 2;
+    }
+
+    public void LoadInitialState()
+    {
+        Array.Copy(initialState, 0, data, 0, squaredSize * 3);
     }
 
     public bool Move(EMoveType moveType, bool moveVisual = false)
@@ -179,14 +190,14 @@ public class BaseBoard
             data[itemsOffset + newIndex] = currentItem;
             data[itemsOffset + index] = 0;
 
-            if (moveVisual)
-            {
-                OnMove(index, newIndex);
-            }
-
             if (currentItem == neighbourTarget)
             {
                 solveCount++;
+            }
+
+            if (moveVisual)
+            {
+                OnMove(index, newIndex, currentItem == neighbourTarget);
             }
 
             return true;
@@ -232,7 +243,7 @@ public class BaseBoard
         return result;
     }
 
-    public virtual void OnMove(int from, int to)
+    public virtual void OnMove(int from, int to, bool reachTarget)
     {
     }
 
@@ -241,7 +252,8 @@ public class BaseBoard
         BaseBoard bb = new BaseBoard();
         bb.itemsCount = itemsCount;
         bb.size = size;
-        bb.data = data;
+        bb.data = new byte[data.Length];
+        Array.Copy(data, 0, bb.data, 0, data.Length);
 
         bb.blockOffset = blockOffset;
         bb.itemsOffset = itemsOffset;

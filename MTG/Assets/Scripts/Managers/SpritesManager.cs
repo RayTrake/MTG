@@ -17,8 +17,25 @@ public class SpritesManager : MonoBehaviour
         Instance = null;
     }
 
-    public GameObject Item;
-    public GameObject Block;
-    public GameObject Empty;
-    public GameObject Target;
+    public Color[] Colors;
+
+    public SpriteRenderer Block;
+    public SpriteRenderer BoardTile;
+    public SpriteRenderer[] Items;
+    public SpriteRenderer[] Targets;
+
+    public SpriteRenderer GetItem(byte index)
+    {
+        return Items[index - 1];
+    }
+
+    public SpriteRenderer GetTarget(byte index)
+    {
+        return Targets[index - 1];
+    }
+
+    public SpriteRenderer GetRandomTarget()
+    {
+        return Targets[Random.Range(0, Targets.Length)];
+    }
 }
