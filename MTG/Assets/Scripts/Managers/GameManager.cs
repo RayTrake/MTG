@@ -13,12 +13,13 @@ public class GameManager : MonoBehaviour
     public Button Reload;
 
     public GameObject hintArrow;
+    private InputManager inputManager;
 
     public TMPro.TMP_Text MovesLabel;
     public TMPro.TMP_Text PerfectMovesLabel;
     public TMPro.TMP_Text LevelLabel;
 
-    private int currentLevel = 27;
+    private int currentLevel = 0;
 
     GameBoard gameBoard;
     BoardSolver solver;
@@ -28,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        inputManager = new InputManager();
+
         var level = Holder.Levels[currentLevel];
         gameBoard = new GameBoard();
         gameBoard.Init(level.LevelData);
@@ -143,24 +146,10 @@ public class GameManager : MonoBehaviour
 
         if (!blockMovement)
         {
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            BaseBoard.EMoveType moveType = inputManager.GetInput();
+            if (moveType != BaseBoard.EMoveType.Count)
             {
-                moveResult = gameBoard.Move(BaseBoard.EMoveType.Left, true);
-            }
-
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                moveResult = gameBoard.Move(BaseBoard.EMoveType.Right, true);
-            }
-
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                moveResult = gameBoard.Move(BaseBoard.EMoveType.Down, true);
-            }
-
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                moveResult = gameBoard.Move(BaseBoard.EMoveType.Up, true);
+                moveResult = gameBoard.Move(moveType, true);
             }
         }
 

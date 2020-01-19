@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8451552948763773442}
   - component: {fileID: 7736437093402660133}
-  - component: {fileID: -3498405048343267967}
   - component: {fileID: -5755555334262615791}
+  - component: {fileID: 225768997054242664}
   m_Layer: 0
   m_Name: Blue Item
   m_TagString: Untagged
@@ -50,7 +50,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82,24 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-3498405048343267967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2203199544129404572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  glowColor: {r: 0.29803923, g: 0.60784316, b: 0.83137256, a: 1}
-  glowBrightness: 1
-  outlineWidth: 0
-  alphaThreshold: 0.01
-  drawOutside: 0
-  enableInstancing: 0
 --- !u!114 &-5755555334262615791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,5 +94,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c50af7cbb9d1a124384ecba308648dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlowEffect: {fileID: -3498405048343267967}
+  GlowEffect: {fileID: 225768997054242664}
+  SpriteRendererInstance: {fileID: 7736437093402660133}
   Speed: 0.05
+  DefaultColor: {r: 1, g: 1, b: 1, a: 0.89411765}
+  SolvedColor: {r: 0, g: 0.745283, b: 0.48581412, a: 1}
+--- !u!114 &225768997054242664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2203199544129404572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowColor: {r: 1, g: 1, b: 1, a: 1}
+  glowBrightness: 2
+  outlineWidth: 1
+  alphaThreshold: 0.01
+  drawOutside: 0
+  enableInstancing: 0

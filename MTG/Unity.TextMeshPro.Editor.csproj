@@ -248,6 +248,9 @@
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:/Program Files/UnityNew/2019.2.17f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.WebGL.Extensions">
+      <HintPath>C:/Program Files/UnityNew/2019.2.17f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.Android.Extensions">
       <HintPath>C:/Program Files/UnityNew/2019.2.17f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
     </Reference>
@@ -685,6 +688,26 @@
     <Compile Include="Packages\com.unity.textmeshpro\Scripts\Editor\TMPro_TexturePostProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Shaders\MaskAnimation.shader" />
+    <None Include="Assets\SpriteGlow\Resources\SpriteGlow\Shaders\SpriteOutline.shader" />
+    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Packages\com.unity.2d.sprite\Editor\UI\SpriteEditor\PolygonChangeShapeWindow.uxml" />
     <None Include="Packages\com.unity.2d.sprite\Editor\UI\SpriteEditor\SpriteEditor.uss" />
     <None Include="Packages\com.unity.2d.sprite\Editor\UI\SpriteEditor\SpriteFrameModuleInspector.uxml" />
@@ -693,6 +716,71 @@
     <None Include="Packages\com.unity.collab-proxy\Editor\Resources\Styles\CollabHistoryLight.uss" />
     <None Include="Packages\com.unity.ext.nunit\net35\unity-custom\This is a custom build DONT include.txt" />
     <None Include="Packages\com.unity.ext.nunit\net35\unity-custom\nunit.framework.xml" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\ACES.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\API\D3D11.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\API\D3D12.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\API\D3D9.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\API\Metal.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\API\OpenGL.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\API\PSP2.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\API\PSSL.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\API\Switch.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\API\Vulkan.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\API\XboxOne.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\AutoExposure.compute" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\Bloom.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\Copy.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\CopyStd.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\CopyStdFromDoubleWide.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\CopyStdFromTexArray.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\DeferredFog.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\DepthOfField.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\DepthOfField.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\DiscardAlpha.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\DiskKernels.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\Distortion.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\Dithering.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\ExposureHistogram.compute" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\ExposureHistogram.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\FastApproximateAntialiasing.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\FinalPass.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\Fog.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\GaussianDownsample.compute" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\GrainBaker.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\Lut2DBaker.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\Lut3DBaker.compute" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\MotionBlur.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\MultiScaleVO.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\MultiScaleVODownsample1.compute" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\MultiScaleVODownsample2.compute" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\MultiScaleVORender.compute" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\MultiScaleVOUpsample.compute" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\ScalableAO.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\ScalableAO.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\ScreenSpaceReflections.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\ScreenSpaceReflections.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\SubpixelMorphologicalAntialiasing.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\SubpixelMorphologicalAntialiasing.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\SubpixelMorphologicalAntialiasingBridge.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\TemporalAntialiasing.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\Texture2DLerp.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\Texture3DLerp.compute" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Builtins\Uber.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Colors.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Debug\Histogram.compute" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Debug\Histogram.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Debug\LightMeter.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Debug\Overlays.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Debug\Vectorscope.compute" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Debug\Vectorscope.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Debug\Waveform.compute" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Debug\Waveform.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Editor\ConvertToLog.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Editor\CurveGrid.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Editor\Trackball.shader" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\Sampling.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\StdLib.hlsl" />
+    <None Include="Packages\com.unity.postprocessing\PostProcessing\Shaders\xRLib.hlsl" />
     <None Include="Packages\com.unity.textmeshpro\Editor Resources\Shaders\TMP_Properties.cginc" />
     <None Include="Packages\com.unity.textmeshpro\Editor Resources\Shaders\TMP_SDF Internal SSD.shader" />
   </ItemGroup>
